@@ -1,3 +1,5 @@
+# FIXME: pvc not bounding to created pv
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,6 +11,5 @@ spec:
   resources:
     requests:
       storage: 1Ki
-  selector:
-    matchLabels:
-      release: stable
+  volumeName: demo-pv
+  storageClassName: manual
