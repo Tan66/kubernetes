@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-demo
+spec:
+  containers:
+  - name: volume-demo-container
+    image: busybox:stable
+    command: ["/bin/sh", "-c"]
+    args: ["echo 'volume demo in kubernetes' >> /test-volume/file"]
+    volumeMounts:
+    - mountPath: /test-volume
+      name: volume-demo-volume
+  volumes:
+  - name: volume-demo-volume
+    hostPath:
+      path: /data
+      type: Directory
