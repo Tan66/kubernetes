@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-simple-flask
+spec:
+  selector:
+    matchLabels:
+      release: v1
+  template:
+    metadata:
+      labels: 
+        release: v1 
+    spec:
+      containers:
+      - name: demo-simple-flask
+        image: tan66/simple-flask:v1
+        env:
+          - name: USER
+            valueFrom:
+              configMapKeyRef:
+                name: demo-cm
+                key: user
